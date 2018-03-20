@@ -17,7 +17,7 @@
 /**
  * Guid Exceptions
  */
- public errordomain GuidException
+public errordomain GuidException
 {
 	/**
 	 * Thrown when a guid string containes fewer than 32 digits 

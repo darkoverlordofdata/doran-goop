@@ -23,8 +23,7 @@
 /**
  * Class Registration Exceptions
  */
-public errordomain Exception
-{
+public errordomain Exception {
 	/**
 	 * Thrown when referening a class that is not registered
 	 */
@@ -38,8 +37,7 @@ public errordomain Exception
 /**
  * Core Class bits
  */
-public class Klass : Object
-{
+public class Klass : Object {
 	/**
 	 * a weak referece to the Class for this object
 	 */
@@ -49,21 +47,18 @@ public class Klass : Object
 /**
  * Class metadata header
  */
-public class Class : Object
-{
+public class Class : Object {
 	/**
 	 * Registers a classid and returns the unique rehash
 	 */
-	public static Class Register(string name, string? guid=null)
-	{
+	public static Class register(string name, string? guid=null) {
 		if (classes == null) 
 			classes = new HashTable<string,Class>(str_hash, str_equal);
 		if (registry == null) 
 			registry = new HashTable<Guid*,Class>(null, null);
 
 		var klass = classes.Get(name);
-		if (klass == null)
-		{
+		if (klass == null) {
 			string uuid = guid==null ? Guid.Generate() : guid;
 			klass = new Class(name, uuid); 
 			classes.Set(name, klass);
@@ -74,8 +69,7 @@ public class Class : Object
 
 	/**
 	 */
-	public static Class Get(string name)
-	{
+	public static Class get(string name) {
 		if (classes == null) throw new Exception.ClassNotRegistered(name);
 		var klass = classes.Get(name);
 		if (klass == null) throw new Exception.ClassNotRegistered(name);
@@ -98,8 +92,7 @@ public class Class : Object
 	 * Parse a binary guid from string
 	 * Creates a unique re-hash that fits in one word.
 	 */
-	public Class(string name, string uuid)
-	{
+	public Class(string name, string uuid) {
 		this.uuid = uuid;
 		this.name = name;
 		ClsId = Guid.Parse(uuid);
@@ -109,8 +102,7 @@ public class Class : Object
 	/**
 	 * String representation of the klass
 	 */
-	public string ToString()
-	{
+	public string toString() {
 		return uuid;
 	}
 
